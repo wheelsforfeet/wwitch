@@ -113,6 +113,28 @@
       77.8% { opacity: 0; transform: translateX(0); }
     }
 
+    @keyframes countdown-tear {
+      0%, 65%, 100% { transform: translateX(0); }
+      65.5% { transform: translateX( 7px); }
+      66%   { transform: translateX(-5px); }
+      66.5% { transform: translateX( 4px); }
+      67%   { transform: translateX(-3px); }
+      67.5% { transform: translateX( 2px); }
+      68%   { transform: translateX(0); }
+    }
+
+    @keyframes countdown-flicker {
+      0%, 55%, 100% { opacity: 1; }
+      55.3% { opacity: 0.04; }
+      55.7% { opacity: 0.7; }
+      56.1% { opacity: 0.06; }
+      56.5% { opacity: 0.5; }
+      56.9% { opacity: 0; }
+      57.3% { opacity: 0.45; }
+      57.7% { opacity: 0.03; }
+      58.1% { opacity: 1; }
+    }
+
     @keyframes flicker {
       0%, 45%, 100% { opacity: 1; }
       45.3% { opacity: 0.03; }
@@ -164,6 +186,7 @@
       gap: 1.5rem;
       justify-content: center;
       margin-bottom: 2.5rem;
+      animation: countdown-tear 11s steps(1) infinite, countdown-flicker 14s steps(1) infinite;
     }
 
     .countdown-unit {
