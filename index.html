@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>wwitch</title>
+  <meta name="description" content="Something arrives August 19.">
+  <meta property="og:title" content="wwitch">
+  <meta property="og:description" content="Something arrives August 19.">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=Space+Mono&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #0a0908;
+      --off-white: #e8e4dc;
+      --dim: #6b6460;
+      --accent: #8b1a1a;
+    }
+
+    html, body {
+      height: 100%;
+      background: var(--black);
+      color: var(--off-white);
+      font-family: 'IM Fell English', Georgia, serif;
+      overflow-x: hidden;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 2rem;
+      position: relative;
+    }
+
+    /* Subtle grain texture overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      max-width: 540px;
+      width: 100%;
+    }
+
+    .wordmark {
+      font-size: clamp(3.5rem, 12vw, 6rem);
+      font-weight: normal;
+      letter-spacing: -0.02em;
+      line-height: 1;
+      color: var(--off-white);
+      margin-bottom: 0.15em;
+      position: relative;
+      display: inline-block;
+    }
+
+    /* Glitch effect */
+    .wordmark::before,
+    .wordmark::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .wordmark::before {
+      color: var(--accent);
+      clip-path: polygon(0 20%, 100% 20%, 100% 40%, 0 40%);
+      transform: translateX(-2px);
+      animation: glitch-1 8s infinite;
+      opacity: 0;
+    }
+
+    .wordmark::after {
+      color: #1a3a3a;
+      clip-path: polygon(0 60%, 100% 60%, 100% 75%, 0 75%);
+      transform: translateX(2px);
+      animation: glitch-2 8s infinite;
+      opacity: 0;
+    }
+
+    @keyframes glitch-1 {
+      0%, 94%, 96%, 100% { opacity: 0; transform: translateX(0); }
+      94.5% { opacity: 1; transform: translateX(-3px); }
+      95.5% { opacity: 1; transform: translateX(2px); }
+    }
+
+    @keyframes glitch-2 {
+      0%, 94%, 96%, 100% { opacity: 0; transform: translateX(0); }
+      94.7% { opacity: 1; transform: translateX(3px); }
+      95.3% { opacity: 1; transform: translateX(-1px); }
+    }
+
+    .divider {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, transparent, var(--dim), transparent);
+      margin: 1.5rem auto;
+    }
+
+    .date-line {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--dim);
+      margin-bottom: 2rem;
+    }
+
+    .countdown {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .countdown-unit {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .countdown-number {
+      font-family: 'Space Mono', monospace;
+      font-size: clamp(1.8rem, 6vw, 2.8rem);
+      font-weight: normal;
+      color: var(--off-white);
+      line-height: 1;
+      min-width: 2ch;
+    }
+
+    .countdown-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.55rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--dim);
+    }
+
+    .countdown-sep {
+      font-size: 2rem;
+      color: var(--accent);
+      align-self: flex-start;
+      padding-top: 0.2rem;
+      opacity: 0.5;
+    }
+
+    .tagline {
+      font-style: italic;
+      font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+      color: var(--dim);
+      margin-bottom: 2.5rem;
+      line-height: 1.6;
+    }
+
+    .email-form {
+      display: flex;
+      gap: 0;
+      max-width: 380px;
+      margin: 0 auto 1rem;
+      border: 1px solid rgba(232, 228, 220, 0.15);
+    }
+
+    .email-form input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      padding: 0.75rem 1rem;
+      color: var(--off-white);
+      font-family: 'Space Mono', monospace;
+      font-size: 0.75rem;
+      outline: none;
+      letter-spacing: 0.05em;
+    }
+
+    .email-form input::placeholder {
+      color: var(--dim);
+    }
+
+    .email-form button {
+      background: none;
+      border: none;
+      border-left: 1px solid rgba(232, 228, 220, 0.15);
+      padding: 0.75rem 1.1rem;
+      color: var(--dim);
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: color 0.2s, background 0.2s;
+      white-space: nowrap;
+    }
+
+    .email-form button:hover {
+      color: var(--off-white);
+      background: rgba(139, 26, 26, 0.15);
+    }
+
+    .form-note {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+      color: rgba(107, 100, 96, 0.5);
+      text-transform: uppercase;
+    }
+
+    .success-msg {
+      display: none;
+      font-style: italic;
+      color: var(--dim);
+      font-size: 0.9rem;
+      padding: 1rem 0;
+    }
+
+    .bottom-line {
+      position: fixed;
+      bottom: 1.5rem;
+      left: 0;
+      right: 0;
+      text-align: center;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.55rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(107, 100, 96, 0.3);
+      z-index: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="wordmark" data-text="wwitch">wwitch</div>
+
+    <div class="divider"></div>
+
+    <p class="date-line">August 19 &nbsp;·&nbsp; The Turning begins</p>
+
+    <div class="countdown" id="countdown">
+      <div class="countdown-unit">
+        <span class="countdown-number" id="cd-days">--</span>
+        <span class="countdown-label">Days</span>
+      </div>
+      <span class="countdown-sep">:</span>
+      <div class="countdown-unit">
+        <span class="countdown-number" id="cd-hours">--</span>
+        <span class="countdown-label">Hours</span>
+      </div>
+      <span class="countdown-sep">:</span>
+      <div class="countdown-unit">
+        <span class="countdown-number" id="cd-mins">--</span>
+        <span class="countdown-label">Minutes</span>
+      </div>
+      <span class="countdown-sep">:</span>
+      <div class="countdown-unit">
+        <span class="countdown-number" id="cd-secs">--</span>
+        <span class="countdown-label">Seconds</span>
+      </div>
+    </div>
+
+    <p class="tagline">Something older than October.<br>Something that arrives every year whether you're ready or not.</p>
+
+    <form class="email-form" id="email-form">
+      <input type="email" id="email-input" placeholder="your@email.com" required autocomplete="email">
+      <button type="submit">Know first</button>
+    </form>
+    <p class="form-note">No noise. One message. August 19.</p>
+    <p class="success-msg" id="success-msg">You'll hear it when it arrives.</p>
+  </div>
+
+  <p class="bottom-line">The dark half begins &nbsp;·&nbsp; wwitch.com</p>
+
+  <script>
+    // Countdown to August 19, 2026
+    const target = new Date('2026-08-19T00:00:00');
+
+    function update() {
+      const now = new Date();
+      const diff = target - now;
+
+      if (diff <= 0) {
+        document.getElementById('countdown').innerHTML = '<p style="font-family:Space Mono,monospace;font-size:0.8rem;letter-spacing:0.15em;color:var(--accent)">THE TURNING HAS BEGUN</p>';
+        return;
+      }
+
+      const days = Math.floor(diff / 86400000);
+      const hours = Math.floor((diff % 86400000) / 3600000);
+      const mins = Math.floor((diff % 3600000) / 60000);
+      const secs = Math.floor((diff % 60000) / 1000);
+
+      document.getElementById('cd-days').textContent = String(days).padStart(2, '0');
+      document.getElementById('cd-hours').textContent = String(hours).padStart(2, '0');
+      document.getElementById('cd-mins').textContent = String(mins).padStart(2, '0');
+      document.getElementById('cd-secs').textContent = String(secs).padStart(2, '0');
+    }
+
+    update();
+    setInterval(update, 1000);
+
+    // Email form — swap for your actual endpoint
+    document.getElementById('email-form').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const email = document.getElementById('email-input').value;
+      // TODO: wire to email provider (Mailchimp, Resend, etc.)
+      console.log('Email captured:', email);
+      this.style.display = 'none';
+      document.querySelector('.form-note').style.display = 'none';
+      document.getElementById('success-msg').style.display = 'block';
+    });
+  </script>
+
+</body>
+</html>
