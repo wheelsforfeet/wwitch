@@ -54,7 +54,7 @@
       text-align: center;
       max-width: 540px;
       width: 100%;
-      animation: flicker 9s steps(1) infinite;
+      animation: flicker 16s steps(1) infinite;
     }
 
     .wordmark {
@@ -66,7 +66,7 @@
       margin-bottom: 0.15em;
       position: relative;
       display: inline-block;
-      animation: vibrate 3s steps(1) infinite;
+      animation: vibrate 6s steps(1) infinite;
     }
 
     /* Glitch effect */
@@ -84,14 +84,14 @@
       color: var(--off-white);
       clip-path: polygon(0 0, 100% 0, 100% 42%, 0 42%);
       opacity: 0;
-      animation: scan-tear-top 6s steps(1) infinite;
+      animation: scan-tear-top 12s steps(1) infinite;
     }
 
     .wordmark::after {
       color: var(--off-white);
       clip-path: polygon(0 58%, 100% 58%, 100% 100%, 0 100%);
       opacity: 0;
-      animation: scan-tear-bot 6s steps(1) infinite;
+      animation: scan-tear-bot 12s steps(1) infinite;
     }
 
     @keyframes scan-tear-top {
@@ -371,7 +371,7 @@
     }
 
     function scheduleCorrupt() {
-      setTimeout(() => { corrupt(); scheduleCorrupt(); }, 7000 + Math.random() * 5000);
+      setTimeout(() => { corrupt(); scheduleCorrupt(); }, 12000 + Math.random() * 8000);
     }
     scheduleCorrupt();
 
