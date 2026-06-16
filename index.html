@@ -64,6 +64,7 @@
       margin-bottom: 0.15em;
       position: relative;
       display: inline-block;
+      animation: vibrate 5s infinite;
     }
 
     /* Glitch effect */
@@ -103,6 +104,27 @@
       0%, 94%, 96%, 100% { opacity: 0; transform: translateX(0); }
       94.7% { opacity: 1; transform: translateX(3px); }
       95.3% { opacity: 1; transform: translateX(-1px); }
+    }
+
+    @keyframes vibrate {
+      0%, 70%, 100% { transform: translate(0, 0); }
+      70.4% { transform: translate(-4px,  2px); }
+      70.8% { transform: translate( 4px, -3px); }
+      71.2% { transform: translate(-3px,  4px); }
+      71.6% { transform: translate( 5px, -2px); }
+      72.0% { transform: translate(-5px,  1px); }
+      72.4% { transform: translate( 3px,  3px); }
+      72.8% { transform: translate(-2px, -4px); }
+      73.2% { transform: translate( 4px,  2px); }
+      73.6% { transform: translate(-4px, -1px); }
+      74.0% { transform: translate( 2px,  4px); }
+      74.4% { transform: translate(-3px, -3px); }
+      74.8% { transform: translate( 5px,  1px); }
+      75.2% { transform: translate(-2px,  3px); }
+      75.6% { transform: translate( 3px, -4px); }
+      76.0% { transform: translate(-1px,  2px); }
+      76.4% { transform: translate( 2px, -1px); }
+      76.8% { transform: translate(0, 0); }
     }
 
     .divider {
