@@ -38,7 +38,7 @@ export async function onRequestPost(context) {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      from: 'wwitch <onboarding@resend.dev>',
+      from: 'wwitch <noreply@wwitch.com>',
       to: email,
       subject: 'You\'ll hear it when it arrives.',
       html: `
