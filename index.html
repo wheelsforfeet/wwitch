@@ -313,15 +313,31 @@
     update();
     setInterval(update, 1000);
 
-    // Email form — swap for your actual endpoint
     document.getElementById('email-form').addEventListener('submit', async function(e) {
       e.preventDefault();
       const email = document.getElementById('email-input').value;
-      // TODO: wire to email provider (Mailchimp, Resend, etc.)
-      console.log('Email captured:', email);
-      this.style.display = 'none';
-      document.querySelector('.form-note').style.display = 'none';
-      document.getElementById('success-msg').style.display = 'block';
+      const btn = this.querySelector('button');
+      btn.textContent = '...';
+      btn.disabled = true;
+
+      try {
+        const res = await fetch('/api/subscribe', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email }),
+        });
+        if (res.ok) {
+          this.style.display = 'none';
+          document.querySelector('.form-note').style.display = 'none';
+          document.getElementById('success-msg').style.display = 'block';
+        } else {
+          btn.textContent = 'Try again';
+          btn.disabled = false;
+        }
+      } catch {
+        btn.textContent = 'Try again';
+        btn.disabled = false;
+      }
     });
   </script>
 
