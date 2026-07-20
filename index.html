@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>wwitch</title>
+  <title>...it is returning.</title>
   <meta name="description" content="Something arrives August 19.">
   <meta name="version" content="v3">
-  <meta property="og:title" content="wwitch">
+  <meta property="og:title" content="...it is returning.">
   <meta property="og:description" content="Something arrives August 19.">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=Space+Mono&display=swap');
@@ -57,7 +57,7 @@
     }
 
     .wordmark {
-      font-size: clamp(3.5rem, 12vw, 6rem);
+      font-size: clamp(1.8rem, 6vw, 3.2rem);
       font-weight: normal;
       letter-spacing: -0.02em;
       line-height: 1;
@@ -325,11 +325,9 @@
 <body>
 
   <div class="container">
-    <div class="wordmark" data-text="wwitch">wwitch</div>
+    <div class="wordmark" data-text="...it is returning.">...it is returning.</div>
 
     <div class="divider"></div>
-
-    <p class="date-line">August 19 &nbsp;·&nbsp; The Turning begins</p>
 
     <div class="countdown" id="countdown">
       <div class="countdown-unit">
@@ -353,7 +351,7 @@
       </div>
     </div>
 
-    <p class="tagline">Something older than October.<br>Something that arrives every year whether you're ready or not.</p>
+    <p class="tagline">Prepare yourself for the Turning</p>
 
     <form class="email-form" id="email-form">
       <input type="email" id="email-input" placeholder="your@email.com" required autocomplete="email">
@@ -393,13 +391,13 @@
     setInterval(update, 1000);
 
     // Corruption effect
-    const original = 'wwitch';
+    const original = '...it is returning.';
     const glyphs = 'abcdefghijklmnopqrstuvwxyz';
     const wmark = document.querySelector('.wordmark');
 
     function corrupt() {
       const chars = original.split('');
-      const spots = [Math.floor(Math.random() * 6), Math.floor(Math.random() * 6)];
+      const spots = [Math.floor(Math.random() * original.length), Math.floor(Math.random() * original.length)];
       spots.forEach(i => { chars[i] = glyphs[Math.floor(Math.random() * glyphs.length)]; });
       const corrupted = chars.join('');
       wmark.textContent = corrupted;
