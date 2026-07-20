@@ -241,10 +241,22 @@
 
     .tagline {
       font-style: italic;
-      font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+      font-size: clamp(1.05rem, 2.7vw, 1.2rem);
       color: var(--dim);
       margin-bottom: 2.5rem;
       line-height: 1.6;
+    }
+
+    .tagline-line {
+      display: block;
+    }
+
+    .tagline-line:first-child {
+      transform: translateX(-0.6em);
+    }
+
+    .tagline-line:last-child {
+      transform: translateX(0.6em);
     }
 
     .email-form {
@@ -314,10 +326,10 @@
       right: 0;
       text-align: center;
       font-family: 'Space Mono', monospace;
-      font-size: 0.55rem;
+      font-size: 0.63rem;
       letter-spacing: 0.15em;
       text-transform: uppercase;
-      color: rgba(107, 100, 96, 0.3);
+      color: rgba(107, 100, 96, 0.33);
       z-index: 1;
     }
   </style>
@@ -351,17 +363,17 @@
       </div>
     </div>
 
-    <p class="tagline">The vvitches' ashes, still slow-burning.<br>Prepare ye well, for comes the Turning...</p>
+    <p class="tagline"><span class="tagline-line">The vvitches' ashes, still slow-burning.</span><span class="tagline-line">Prepare ye well, for comes the Turning...</span></p>
 
     <form class="email-form" id="email-form">
       <input type="email" id="email-input" placeholder="your@email.com" required autocomplete="email">
       <button type="submit">Know first</button>
     </form>
-    <p class="form-note">No noise. One message. August 19.</p>
+    <p class="form-note">When the count ends, the Turning begins.</p>
     <p class="success-msg" id="success-msg">You'll hear it when it arrives.</p>
   </div>
 
-  <p class="bottom-line">The dark half begins &nbsp;·&nbsp; wwitch.com</p>
+  <p class="bottom-line">NeverEnding Halloween &nbsp;·&nbsp; wwitch.com</p>
 
   <script>
     // Countdown to August 19, 2026
