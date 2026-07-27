@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <rect width="32" height="32" fill="#0a0908"/>
+  <!-- double-W monogram, built from two overlapping V strokes -->
+  <polyline points="4,9 8,23 12,13 16,23 20,13 24,23 28,9"
+            fill="none" stroke="#e8e4dc" stroke-width="2.6"
+            stroke-linecap="square" stroke-linejoin="miter"/>
+  <!-- glitch tear: a short displaced red accent segment through the middle stroke -->
+  <line x1="12.5" y1="15.5" x2="16" y2="15.5" stroke="#8b1a1a" stroke-width="2.6"
+        transform="translate(1.2,0)"/>
+</svg>
