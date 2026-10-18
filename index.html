@@ -377,15 +377,25 @@
   <p class="bottom-line">NeverEnding Halloween &nbsp;·&nbsp; wwitch.com</p>
 
   <script>
-    // Countdown to August 19, 2026
-    const target = new Date('2026-08-19T00:00:00');
+    // Three states by date: ramp (Jul 19 - Aug 18, countdown to Aug 19), live (Aug 19 - Oct 31),
+    // dormant (Nov 1 - Jul 18, "it has turned").
+    const today = new Date();
+    const year = today.getFullYear();
+    const rampStart = new Date(year + '-07-19T00:00:00');
+    const seasonStart = new Date(year + '-08-19T00:00:00');
+    const seasonEnd = new Date(year + '-11-01T00:00:00');
+    const live = today >= seasonStart && today < seasonEnd;
+    const dormant = !live && (today >= seasonEnd || today < rampStart);
+    const target = seasonStart;
+    const nextSummer = today >= seasonEnd ? year + 1 : year;
 
     function update() {
       const now = new Date();
       const diff = target - now;
 
-      if (diff <= 0) {
-        document.getElementById('countdown').innerHTML = '<p style="font-family:Space Mono,monospace;font-size:0.8rem;letter-spacing:0.15em;color:var(--accent)">THE TURNING HAS BEGUN</p>';
+      if (live || dormant) {
+        const msg = live ? 'THE TURNING HAS BEGUN' : 'Join us again Summer ' + nextSummer + '.';
+        document.getElementById('countdown').innerHTML = '<p style="font-family:Space Mono,monospace;font-size:0.8rem;letter-spacing:0.15em;color:var(--accent)">' + msg + '</p>';
         return;
       }
 
@@ -404,9 +414,14 @@
     setInterval(update, 1000);
 
     // Corruption effect
-    const original = '...it is returning';
+    const original = live ? '...it is here' : dormant ? '...it has turned' : '...it is returning';
     const glyphs = 'abcdefghijklmnopqrstuvwxyz';
     const wmark = document.querySelector('.wordmark');
+    wmark.textContent = original;
+    wmark.dataset.text = original;
+    document.title = original;
+    if (live) document.querySelector('.form-note').textContent = 'The count has ended.';
+    if (dormant) document.querySelector('.form-note').style.display = 'none';
 
     function corrupt() {
       const chars = original.split('');
